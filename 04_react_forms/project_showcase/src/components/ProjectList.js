@@ -10,7 +10,8 @@ function ProjectList({ projects, onLoadProjects }) {
   }
 
   const searchResults = projects.filter(project => {
-    return project.name.toLowerCase().includes(searchQuery.toLowerCase())
+    return project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    project.about.toLowerCase().includes(searchQuery.toLowerCase())
   })
 
   const projectCards = searchResults.map(project => (
@@ -37,6 +38,7 @@ function ProjectList({ projects, onLoadProjects }) {
         type="text"
         placeholder="Search..."
         onChange={handleSearch}
+        value={searchQuery}
       />
 
       <ul className="cards">{projectCards}</ul>
